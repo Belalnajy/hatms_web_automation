@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HATMS Web</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <!-- Google Fonts for modern look -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Fira+Code:wght@400;600&display=swap"
+      rel="stylesheet" />
+  </head>
+  <body>
+    <div class="background-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+
+    <main class="glass-container container">
+      <header class="header">
+        <h1>🚀 HATMS Automaton</h1>
+        <p>
+          Enter your <span class="monospaced">MoodleSession</span> cookie below to start the background automation.
+        </p>
+      </header>
+
+      <section class="controls">
+        <div class="input-group">
+          <input
+            type="text"
+            id="cookie-input"
+            placeholder="MoodleSession=..."
+            autocomplete="off" />
+          <button id="start-btn" class="btn primary-btn">
+            <span class="btn-text">Start Automation</span>
+            <span class="btn-loader hidden">...</span>
+          </button>
+        </div>
+        <div id="status-indicator" class="status-indicator">
+          Status: Waiting for input
+        </div>
+      </section>
+
+      <section class="terminal-container">
+        <div class="terminal-header">
+          <div class="mac-btns">
+            <span class="mac-btn close"></span>
+            <span class="mac-btn min"></span>
+            <span class="mac-btn max"></span>
+          </div>
+          <div class="terminal-title">Live Console</div>
+        </div>
+        <div class="terminal-body" id="terminal-body">
+          <div class="log-line welcome-msg">System is ready. Enter session to begin...</div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
