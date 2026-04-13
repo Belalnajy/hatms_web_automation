@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
         addLog("🚀 Initializing environment and connecting to server...");
 
         try {
-            const response = await fetch("/api/run", {
+            const response = await fetch("/api/index", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ cookie: cookie })
