@@ -134,6 +134,19 @@ def init_sesskey():
     global SESSKEY
     print("🔍 Extracting SESSKEY...")
     r = cf_requests.get(f"{BASE_URL}/my/", headers=HEADERS, impersonate="chrome", timeout=TIMEOUT)
+
+    # Extract account name from the page
+    name_match = re.search(r'class="usertext[^"]*"[^>]*>([^<]+)', r.text)
+    if not name_match:
+        name_match = re.search(r'"userfullname":"([^"]+)"', r.text)
+    if not name_match:
+        name_match = re.search(r'<span class="userbutton">.*?<span[^>]*>([^<]+)</span>', r.text, re.DOTALL)
+    if name_match:
+        account_name = name_match.group(1).strip()
+        print(f"👤 ACCOUNT_NAME: {account_name}")
+    else:
+        print("👤 ACCOUNT_NAME: Unknown")
+
     match = re.search(r'"sesskey":"([^"]+)"', r.text)
     if not match:
         match = re.search(r'sesskey=([^&"]+)', r.text)

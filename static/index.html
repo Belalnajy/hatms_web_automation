@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HATMS Web</title>
     <link rel="stylesheet" href="/static/style.css" />
-    <!-- Google Fonts for modern look -->
     <link
       href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Fira+Code:wght@400;600&display=swap"
       rel="stylesheet" />
@@ -54,6 +53,28 @@
         </div>
         <div class="terminal-body" id="terminal-body">
           <div class="log-line welcome-msg">أهلاً بك. النظام جاهز للبدء...</div>
+        </div>
+      </section>
+
+      <!-- ═══ History Section ═══ -->
+      <section class="history-section">
+        <div class="history-header" id="history-toggle">
+          <div class="history-title-area">
+            <span class="history-icon">📜</span>
+            <h2 class="history-title">سجل الحسابات</h2>
+            <span class="history-badge" id="history-count">0</span>
+          </div>
+          <span class="history-chevron">▼</span>
+        </div>
+        <div class="history-content collapsed" id="history-content">
+          <div id="history-empty" class="history-empty">
+            <span class="empty-icon">📭</span>
+            <p>لا يوجد سجل بعد. ابدأ أول أتمتة!</p>
+          </div>
+          <div id="history-list" class="history-list"></div>
+          <button id="clear-history-btn" class="btn danger-btn hidden">
+            🗑️ مسح الكل
+          </button>
         </div>
       </section>
     </main>
