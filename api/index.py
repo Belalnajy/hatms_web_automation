@@ -9,7 +9,7 @@ app = FastAPI(title="HATMS Web Automation API")
 class RunPayload(BaseModel):
     cookie: str
 
-@app.post("/api/run")
+@app.post("/api/index")
 async def run_script(payload: RunPayload):
     cookie = payload.cookie
     
