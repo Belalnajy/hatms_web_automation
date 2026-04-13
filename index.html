@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/static/style.css" />
     <!-- Google Fonts for modern look -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Fira+Code:wght@400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Fira+Code:wght@400;600&display=swap"
       rel="stylesheet" />
   </head>
   <body>
@@ -19,10 +19,9 @@
 
     <main class="glass-container container">
       <header class="header">
-        <h1>🚀 مجتاز الآلي</h1>
+        <h1>🚀 HATMS Automaton</h1>
         <p>
-          أدخل كود الجلسة <span class="monospaced">(MoodleSession)</span> لتبدأ
-          الأتمتة التلقائية خلف الكواليس.
+          Enter your <span class="monospaced">MoodleSession</span> cookie below to start the background automation.
         </p>
       </header>
 
@@ -34,12 +33,12 @@
             placeholder="MoodleSession=..."
             autocomplete="off" />
           <button id="start-btn" class="btn primary-btn">
-            <span class="btn-text">بدء التشغيل</span>
+            <span class="btn-text">Start Automation</span>
             <span class="btn-loader hidden">...</span>
           </button>
         </div>
         <div id="status-indicator" class="status-indicator">
-          الوضع: بانتظار الإدخال
+          Status: Waiting for input
         </div>
       </section>
 
@@ -50,10 +49,10 @@
             <span class="mac-btn min"></span>
             <span class="mac-btn max"></span>
           </div>
-          <div class="terminal-title">شاشة المخرجات (Live Console)</div>
+          <div class="terminal-title">Live Console</div>
         </div>
         <div class="terminal-body" id="terminal-body">
-          <div class="log-line welcome-msg">أهلاً بك. النظام جاهز للبدء...</div>
+          <div class="log-line welcome-msg">System is ready. Enter session to begin...</div>
         </div>
       </section>
     </main>

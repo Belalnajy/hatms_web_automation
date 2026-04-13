@@ -1,21 +1,10 @@
-from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse, StreamingResponse
-from fastapi.staticfiles import StaticFiles
+from fastapi import FastAPI
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
-import subprocess
 import asyncio
 import os
 
-app = FastAPI(title="HATMS Web Automation")
-
-# Mount aesthetic static files
-if os.path.exists("static"):
-    app.mount("/static", StaticFiles(directory="static"), name="static")
-
-@app.get("/", response_class=HTMLResponse)
-async def get_index():
-    with open("static/index.html", "r", encoding="utf-8") as f:
-        return HTMLResponse(content=f.read())
+app = FastAPI(title="HATMS Web Automation API")
 
 class RunPayload(BaseModel):
     cookie: str
@@ -28,11 +17,16 @@ async def run_script(payload: RunPayload):
         # Clean cookie format
         clean_cookie = cookie.replace("MoodleSession=", "").strip()
         
+        # Absolute path calculation to the script
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        script_path = os.path.join(base_dir, "hatms_full_automation.py")
+
         # Start subprocess
         process = await asyncio.create_subprocess_exec(
-            "python3", "hatms_full_automation.py", "--cookie", clean_cookie,
+            "python3", script_path, "--cookie", clean_cookie,
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.STDOUT,
+            cwd=base_dir,
             env=dict(os.environ, PYTHONUNBUFFERED="1") # Force unbuffered Python output
         )
         
@@ -54,6 +48,4 @@ async def run_script(payload: RunPayload):
             
     return StreamingResponse(log_generator(), media_type="text/event-stream")
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+# No uvicorn required for Vercel Serverless
